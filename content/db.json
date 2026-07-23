@@ -1,0 +1,251 @@
+{
+  "_note": "Admin credentials are stored in .env.local — NOT here.",
+  "site": {
+    "name": "Ansh Varshney",
+    "headline": "Data Science @ IIT Madras | Open Source Contributor | AI & Software Engineer",
+    "location": "Aligarh, Uttar Pradesh, India",
+    "email": "anshvarshney2006@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/anshvarshneyy",
+    "github": "https://github.com/anshvarshney1502",
+    "seoTitle": "Ansh Varshney",
+    "seoDescription": "Technical essays on AI, Python, Machine Learning, and Software Engineering."
+  },
+  "hero": {
+    "badge": "TECHNICAL JOURNAL",
+    "title": "Thoughts on [Artificial Intelligence], Python, system design, and software engineering.",
+    "description": "A personal digital publication focusing on machine learning algorithms, open-source python engines, build logs, and developer productivity."
+  },
+  "navigation": [
+    {
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "name": "Articles",
+      "path": "/articles"
+    },
+    {
+      "name": "Topics",
+      "path": "/topics"
+    },
+    {
+      "name": "Series",
+      "path": "/series"
+    },
+    {
+      "name": "Archive",
+      "path": "/archive"
+    },
+    {
+      "name": "About",
+      "path": "/about"
+    }
+  ],
+  "popular_topics": [
+    {
+      "name": "Artificial Intelligence",
+      "count": 0,
+      "description": "Neural networks, fine-tuning, embeddings, and generative agent pipelines."
+    },
+    {
+      "name": "Python Engineering",
+      "count": -2,
+      "description": "Advanced patterns, PyO3 extensions, compiler optimizations, and performance."
+    },
+    {
+      "name": "System Design",
+      "count": -2,
+      "description": "Microservices, API design, high-throughput architectures, and database choices."
+    },
+    {
+      "name": "Open Source Projects",
+      "count": 0,
+      "description": "Maintained tools, framework contributions, and community libraries."
+    }
+  ],
+  "reading_collections": [
+    {
+      "title": "RAG & Agent Architectures",
+      "description": "Build logs and engineering notes on constructing resilient retrieval pipelines and agent tool control loops.",
+      "count": 5,
+      "slug": "rag-agents"
+    },
+    {
+      "title": "Python Performance",
+      "description": "Essays and guides on compiler extensions, CPU profiling, and Rust-based module accelerations.",
+      "count": 7,
+      "slug": "python-performance"
+    },
+    {
+      "title": "Developer Workspaces",
+      "description": "Reflections on boosting coding cycles, Obsidian productivity graphs, and developer ergonomics.",
+      "count": 4,
+      "slug": "developer-productivity"
+    }
+  ],
+  "recent_notes": [
+    {
+      "id": "note-1",
+      "date": "July 22, 2026",
+      "content": "Integrated PyO3 Rust extension into our Python RAG retriever. Embedding alignment computation latency dropped from 15ms to 1.2ms."
+    },
+    {
+      "id": "note-2",
+      "date": "July 12, 2026",
+      "content": "Vector chunk overlap sizes are often arbitrary. Optimizing them with semantic layout splits yields far cleaner context than strict token boundaries."
+    },
+    {
+      "id": "note-3",
+      "date": "June 25, 2026",
+      "content": "Finetuning small 3B/8B models on targeted domain parameters is consistently yielding higher benchmark accuracy than zero-shot prompting 70B models."
+    }
+  ],
+  "experiences": [
+    {
+      "role": "Open Source Contributor",
+      "company": "Elite Coders Summer of Code (ECSoC)",
+      "duration": "July 2026 – Present",
+      "description": "Working on open-source projects, collaborating with developers, reviewing code, and contributing to production-quality software."
+    },
+    {
+      "role": "Founder & Community Lead",
+      "company": "Technical Innovations Forum",
+      "duration": "Present",
+      "description": "Founded and leading a growing technical community focused on AI, open source, GitHub resources, APIs, developer tools, and collaborative learning."
+    },
+    {
+      "role": "Summer Intern – AI & Open Source",
+      "company": "VLED Lab, IIT Ropar",
+      "duration": "Summer 2025",
+      "description": "Worked on real-world open-source projects focused on AI-powered educational technology and India-centric software solutions, collaborating directly with academic mentors."
+    },
+    {
+      "role": "Campus Partner",
+      "company": "Perplexity AI",
+      "duration": "2025",
+      "description": "Promoted AI adoption, organized community engagement initiatives, created educational content, and gathered user product feedback."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Indian Institute of Technology Madras",
+      "degree": "BS in Data Science and Applications",
+      "duration": "2024 – Present"
+    }
+  ],
+  "skills": [
+    "Python",
+    "Machine Learning",
+    "Data Science",
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "SQL",
+    "Git",
+    "GitHub"
+  ],
+  "focus_areas": [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Python",
+    "Developer Tools",
+    "Software Engineering",
+    "Open Source",
+    "System Design",
+    "Learning Systems"
+  ],
+  "currently": "Currently learning more about AI systems, modern web technologies, and open-source software while writing technical articles and building real-world projects.",
+  "quote_of_the_day": {
+    "text": "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it.",
+    "author": "Edsger W. Dijkstra"
+  },
+  "footer": {
+    "copyright": "© 2026 Ansh Varshney. Built for reading.",
+    "description": "A technical publication cataloging build logs, python compiler optimizations, and AI design patterns."
+  },
+  "testimonials": [
+    {
+      "quote": "Ansh's systematic approach to python acceleration and compiler integration makes his journal a must-read.",
+      "author": "Technical Review Board Member"
+    }
+  ],
+  "homepage_sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "label": "Hero / Introduction",
+      "visible": true,
+      "order": 0,
+      "data": {
+        "badge": "yes",
+        "title": "Thoughts on [Artificial Intelligence], Python, system design, and software engineering.",
+        "description": "A personal digital publication focusing on machine learning algorithms, open-source python engines, build logs, and developer productivity."
+      }
+    },
+    {
+      "id": "latest-writings",
+      "type": "latest_writings",
+      "label": "Latest Writings",
+      "visible": true,
+      "order": 1,
+      "data": {
+        "sectionNumber": "01",
+        "heading": "Recent Writings",
+        "subheading": "Fresh technical notes and reflections published weekly."
+      }
+    },
+    {
+      "id": "featured-essay",
+      "type": "featured_essay",
+      "label": "Featured Essay",
+      "visible": true,
+      "order": 2,
+      "data": {
+        "sectionNumber": "02",
+        "heading": "Featured System Study"
+      }
+    },
+    {
+      "id": "popular-topics",
+      "type": "popular_topics",
+      "label": "Popular Topics",
+      "visible": true,
+      "order": 3,
+      "data": {
+        "sectionNumber": "03"
+      }
+    },
+    {
+      "id": "reading-collections",
+      "type": "reading_collections",
+      "label": "Reading Collections",
+      "visible": true,
+      "order": 4,
+      "data": {
+        "sectionNumber": "04",
+        "heading": "Reading Collections"
+      }
+    },
+    {
+      "id": "recent-notes",
+      "type": "recent_notes",
+      "label": "Recent Notes",
+      "visible": true,
+      "order": 5,
+      "data": {
+        "sectionNumber": "05",
+        "heading": "Recent Notes",
+        "subheading": "Raw logs, digital gardening, and systems observation."
+      }
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "label": "Quote of the Day",
+      "visible": true,
+      "order": 6,
+      "data": {}
+    }
+  ]
+}

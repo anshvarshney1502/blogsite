@@ -1,0 +1,205 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ==========================================
+// USER & SECURITY MANAGEMENT
+// ==========================================
+model User {
+  id           String    @id @default(uuid()) @db.Uuid
+  email        String    @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  role         Role      @default(AUTHOR)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  blogs        Blog[]
+
+  @@index([email])
+}
+
+enum Role {
+  ADMIN
+  AUTHOR
+}
+
+// ==========================================
+// BLOG ENGINE & TAXONOMY
+// ==========================================
+model Blog {
+  id          String     @id @default(uuid()) @db.Uuid
+  slug        String     @unique
+  title       String
+  description String     @db.VarChar(500)
+  content     String     @db.Text
+  coverImage  String?
+  readingTime String
+  publishedAt DateTime?
+  draft       Boolean    @default(true)
+  featured    Boolean    @default(false)
+  archived    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Relationships
+  authorId    String     @db.Uuid
+  author      User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categoryId  String     @db.Uuid
+  category    Category   @relation(fields: [categoryId], references: [id])
+  tags        Tag[]      @relation("BlogTags")
+  media       Media[]
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([publishedAt])
+}
+
+model Category {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  blogs     Blog[]
+  createdAt DateTime @default(now())
+}
+
+model Tag {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  blogs     Blog[]   @relation("BlogTags")
+  createdAt DateTime @default(now())
+}
+
+// ==========================================
+// PORTFOLIO & TIMELINES
+// ==========================================
+model Project {
+  id            String   @id @default(uuid()) @db.Uuid
+  title         String
+  description   String   @db.VarChar(500)
+  content       String   @db.Text
+  repositoryUrl String?
+  demoUrl       String?
+  featured      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  skills        Skill[]  @relation("ProjectSkills")
+}
+
+model Experience {
+  id          String   @id @default(uuid()) @db.Uuid
+  role        String
+  company     String
+  duration    String
+  description String   @db.VarChar(500)
+  orderIndex  Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Skill {
+  id          String    @id @default(uuid()) @db.Uuid
+  name        String    @unique
+  category    String    // e.g., Languages, Frontend, Backend, ML
+  projects    Project[] @relation("ProjectSkills")
+}
+
+// ==========================================
+// MEDIA STORAGE LIBRARY
+// ==========================================
+model Media {
+  id        String   @id @default(uuid()) @db.Uuid
+  url       String
+  fileName  String
+  fileSize  Int
+  mimeType  String
+  altText   String?
+  blogId    String?  @db.Uuid
+  blog      Blog?    @relation(fields: [blogId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+}
+
+// ==========================================
+// SYSTEM & WEBSITE CONFIGURATION
+// ==========================================
+model SiteSetting {
+  id             String         @id @default(uuid()) @db.Uuid
+  siteName       String         @default("Ansh Varshney")
+  headline       String
+  location       String
+  contactEmail   String
+  githubUrl      String?
+  linkedinUrl    String?
+  createdAt      DateTime       @default(now())
+  
+  // Embedded singleton config objects
+  seo            SeoConfig?
+  navigation     Navigation[]
+  footer         FooterConfig?
+}
+
+model SeoConfig {
+  id             String      @id @default(uuid()) @db.Uuid
+  titleTemplate  String      @default("%s | Ansh Varshney")
+  metaTitle      String
+  metaDescription String     @db.VarChar(300)
+  settingId      String      @unique @db.Uuid
+  setting        SiteSetting @relation(fields: [settingId], references: [id], onDelete: Cascade)
+}
+
+model Navigation {
+  id         String      @id @default(uuid()) @db.Uuid
+  label      String
+  path       String
+  orderIndex Int         @default(0)
+  settingId  String      @db.Uuid
+  setting    SiteSetting @relation(fields: [settingId], references: [id], onDelete: Cascade)
+
+  @@index([settingId])
+}
+
+model FooterConfig {
+  id          String      @id @default(uuid()) @db.Uuid
+  copyright   String      @default("© {year} Ansh Varshney.")
+  description String      @db.VarChar(300)
+  settingId   String      @unique @db.Uuid
+  setting     SiteSetting @relation(fields: [settingId], references: [id], onDelete: Cascade)
+}
+
+model HomepageSection {
+  id         String   @id @default(uuid()) @db.Uuid
+  sectionKey String   @unique // e.g., "hero", "writings", "topics"
+  title      String
+  subtitle   String?
+  visible    Boolean  @default(true)
+  orderIndex Int      @default(0)
+}
+
+// ==========================================
+// ENGAGEMENT & MARKETING
+// ==========================================
+model Newsletter {
+  id         String             @id @default(uuid()) @db.Uuid
+  email      String             @unique
+  active     Boolean            @default(true)
+  createdAt  DateTime           @default(now())
+  logs       SubscriptionLog[]
+}
+
+model SubscriptionLog {
+  id           String     @id @default(uuid()) @db.Uuid
+  action       SubAction
+  ipAddress    String?
+  createdAt    DateTime   @default(now())
+  newsletterId String     @db.Uuid
+  newsletter   Newsletter @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
+}
+
+enum SubAction {
+  SUBSCRIBE
+  UNSUBSCRIBE
+}
