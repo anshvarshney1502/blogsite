@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { FileText, Home, User, Archive, BookOpen, RefreshCw } from "lucide-react";
+import { Home, User, Archive, BookOpen, RefreshCw } from "lucide-react";
 import type { Block } from "@/components/admin/page-builder";
 
 const PageBuilder = dynamic(() => import("@/components/admin/page-builder"), {

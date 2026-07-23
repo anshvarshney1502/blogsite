@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Deprecated – replaced by src/components/admin/page-builder.tsx
 export default function VisualEditor({ slug }: { slug: string }) {
   return (

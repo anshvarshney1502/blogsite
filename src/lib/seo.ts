@@ -1,4 +1,3 @@
-import { PostMetadata } from "@/lib/mdx";
 import { getDb } from "@/lib/db";
 
 export interface SEOConfig {

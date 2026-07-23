@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element */
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -35,16 +35,11 @@ import {
   Heading2,
   Eye,
   EyeOff,
-  ChevronDown,
-  ChevronUp,
   AlignLeft,
   AlignCenter,
   AlignRight,
   Bold,
   Italic,
-  Underline,
-  List,
-  ListOrdered,
   Link2,
   Palette,
   Save,

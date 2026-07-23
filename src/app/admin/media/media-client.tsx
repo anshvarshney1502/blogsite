@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Upload, Trash2, Search, Copy, Image as ImageIcon,
-  Film, FileText, RefreshCw, CheckCircle, AlertCircle, X,
+  Film, FileText, RefreshCw, CheckCircle, AlertCircle,
   Grid, List, FolderOpen
 } from "lucide-react";
 

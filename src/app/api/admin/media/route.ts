@@ -19,7 +19,6 @@ function loadCloudinary(): any | null {
   if (!hasCloudinary) return null;
   try {
     // Use Function constructor to bypass static analysis
-    // eslint-disable-next-line @typescript-eslint/no-implied-eval, no-new-func
     const requireFn = new Function("m", "return require(m)");
     const cld = requireFn("cloudinary");
     cld.v2.config({
