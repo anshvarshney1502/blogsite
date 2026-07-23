@@ -1,21 +1,42 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import crypto from "crypto";
 
-function verifySessionToken(token: string): boolean {
+async function verifySessionToken(token: string): Promise<boolean> {
   const secret = process.env.ADMIN_SESSION_SECRET ?? "fallback-dev-secret";
-  const expected = crypto
-    .createHmac("sha256", secret)
-    .update("authenticated")
-    .digest("hex");
+  const encoder = new TextEncoder();
+  
   try {
-    return crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expected));
+    const key = await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign", "verify"]
+    );
+    
+    const signature = await crypto.subtle.sign(
+      "HMAC",
+      key,
+      encoder.encode("authenticated")
+    );
+    
+    const hashArray = Array.from(new Uint8Array(signature));
+    const expectedHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    if (token.length !== expectedHex.length) return false;
+    
+    // Constant time comparison
+    let mismatch = 0;
+    for (let i = 0; i < token.length; i++) {
+      mismatch |= token.charCodeAt(i) ^ expectedHex.charCodeAt(i);
+    }
+    return mismatch === 0;
   } catch {
     return false;
   }
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Protect /admin pages and /api/admin routes (except the login endpoints)
@@ -25,7 +46,7 @@ export function middleware(request: NextRequest) {
   ) {
     const sessionToken = request.cookies.get("admin_session")?.value ?? "";
 
-    if (!verifySessionToken(sessionToken)) {
+    if (!(await verifySessionToken(sessionToken))) {
       if (path.startsWith("/api/")) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
       }
