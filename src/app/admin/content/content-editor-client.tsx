@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
   Save, Rocket, RefreshCw, CheckCircle, AlertCircle,
-  Plus, Trash2, ChevronDown, ChevronUp,
+  Plus, Trash2, ChevronDown, ChevronUp, X,
   User, Navigation, Tag, BookOpen, StickyNote, Quote as QuoteIcon,
   Globe, Award, GraduationCap, Layers
 } from "lucide-react";
