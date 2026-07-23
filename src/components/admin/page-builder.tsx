@@ -41,7 +41,6 @@ import {
   Bold,
   Italic,
   Link2,
-  Palette,
   Save,
   Rocket,
   RefreshCw,
@@ -57,6 +56,7 @@ import {
   Undo2,
   Redo2,
   Copy,
+  Palette,
   X,
 } from "lucide-react";
 
